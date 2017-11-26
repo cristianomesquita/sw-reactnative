@@ -21,7 +21,7 @@ const Menu = (props) => (
         <TouchableOpacity
             style={{
                 height: 120,
-                backgroundColor: '#FFF',
+                backgroundColor: '#ecf0f1',
                 justifyContent: 'center',
                 alignItems: 'center'
             }}
@@ -43,7 +43,7 @@ const Menu = (props) => (
             </View>
         </TouchableOpacity>
         <ScrollView
-            style={{ padding: 20 }}
+            style={{ padding: 20, backgroundColor: '#FBFCFC' }}
         >
             <View
                 style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}
@@ -54,7 +54,7 @@ const Menu = (props) => (
                     color="#00d900"
                 />
                 <TouchableOpacity
-                    onPress={() => false}
+                    onPress={() => Actions.supplyRegisterScene()}
                 >
                     <Text
                         style={{
@@ -85,7 +85,7 @@ const Menu = (props) => (
                             marginLeft: 10
                         }}
                     >
-                        VIsualizar mapa
+                        Visualizar mapa
                     </Text>
                 </TouchableOpacity>
             </View>

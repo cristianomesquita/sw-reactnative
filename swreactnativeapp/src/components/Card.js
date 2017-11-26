@@ -1,14 +1,31 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default class Card extends Component {
+import { connect } from 'react-redux';
+
+class Card extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.formateDate = this.props.expirationDate.substring(0, 10).split('-');
+    }
+
+    componentWillMount() {
+        //Convertendo os tipos de suprimentos para mostrar no card
+        if (this.props.supplyType === 'protein')
+            this.type = 'Proteína';
+        else if (this.props.supplyType === 'carbohydrate')
+            this.type = 'Carboidrato';
+        else if (this.props.supplyType === 'vitamin')
+            this.type = 'Vitamina';
+    }
 
     render() {
         return (
             <View
                 style={[
-                    container,
                     {
                         height: this.props.height,
                         backgroundColor: this.props.backgroundColor,
@@ -68,7 +85,22 @@ export default class Card extends Component {
                 <View
                     style={[cardContent]}
                 >
-                    <Text>Content Card</Text>
+                    <Text style={[txtContentCard, { fontSize: 17 }]}>
+                        {
+                            `Data de validade: ${this.formateDate[2]}/${this.formateDate[1]}/${this.formateDate[0]}`
+                        }
+                    </Text>
+                    <Text style={[txtContentCard, { marginBottom: 30 }]}>
+                        {
+                            `Tipo de suprimento: ${this.type}`
+                        }
+                    </Text>
+                    <Button
+                        title="Ver no mapa"
+                        onPress={() => false}
+                        color="#00d900"
+                    />
+
                 </View>
 
                 <View
@@ -82,9 +114,6 @@ export default class Card extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-
-    },
     cardHeader: {
         justifyContent: 'center',
         alignItems: 'center',
@@ -92,7 +121,9 @@ const styles = StyleSheet.create({
     },
     cardContent: {
         flex: 3,
-        padding: 15
+        padding: 15,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     cardFooter: {
         flex: 1,
@@ -100,7 +131,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row'
 
+    },
+    txtContentCard: {
+        fontSize: 15,
+        fontWeight: 'bold'
     }
 });
 
-const { container, cardHeader, cardContent, cardFooter } = styles;
+const { container, cardHeader, cardContent, cardFooter, txtContentCard } = styles;
+
+const mapStateToProps = state => ({
+    supplies: state.SuppliesReducer.supplies
+});
+
+export default connect(mapStateToProps, {})(Card);

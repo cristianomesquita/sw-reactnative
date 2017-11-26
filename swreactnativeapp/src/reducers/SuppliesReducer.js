@@ -1,13 +1,13 @@
-import { SIDE_MENU_IS_OPEN } from '../actions/type';
+import { GET_SUPPLIES } from '../actions/type';
 
 const INITIAL_STATE = {
-    isOpen: false
+    supplies: []
 };
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case SIDE_MENU_IS_OPEN:
-            return { ...state, isOpen: action.payload };
+        case GET_SUPPLIES:
+            return { ...state, supplies: action.payload };
         default:
             return state;
     }
