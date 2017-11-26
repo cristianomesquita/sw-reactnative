@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, View, StyleSheet, Button } from 'react-native';
+import { ScrollView, View, StyleSheet, Button, Text } from 'react-native';
 import { connect } from 'react-redux';
 
 import { getSupplies } from '../actions/SuppliesAction';
@@ -32,8 +32,15 @@ class MainScene extends Component {
                     height={80}
                     iconName="bars"
                 />
-
                 <ScrollView>
+                    <Text style={{
+                        fontSize: 20,
+                        fontWeight: 'bold',
+                        textAlign: 'center',
+                        marginTop: 20
+                    }}>
+                        Lista de Suprimentos
+                </Text>
                     {
                         this.props.supplies.map((supply, i) => (
                             <Card
@@ -54,6 +61,11 @@ class MainScene extends Component {
                             />
                         ))
                     }
+                    <Button
+                        title="Atualizar Lista"
+                        color="#00d900"
+                        onPress={() => this._getSupplies()}
+                    />
                 </ScrollView>
             </View>
         );

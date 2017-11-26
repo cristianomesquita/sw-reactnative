@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { connect } from 'react-redux';
@@ -95,12 +95,6 @@ class Card extends Component {
                             `Tipo de suprimento: ${this.type}`
                         }
                     </Text>
-                    <Button
-                        title="Ver no mapa"
-                        onPress={() => false}
-                        color="#00d900"
-                    />
-
                 </View>
 
                 <View

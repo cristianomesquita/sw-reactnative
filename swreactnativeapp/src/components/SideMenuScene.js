@@ -76,7 +76,7 @@ const Menu = (props) => (
                     color="#00d900"
                 />
                 <TouchableOpacity
-                    onPress={() => false}
+                    onPress={() => Actions.currentSupplyMapScene()}
                 >
                     <Text
                         style={{

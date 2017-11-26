@@ -5,6 +5,7 @@ import MainScene from './components/MainScene';
 import SideMenuScene from './components/SideMenuScene';
 import SupplyRegisterScene from './components/SupplyRegisterScene';
 import ViewMapScene from './components/ViewMapScene';
+import CurrentSupplyMapScene from './components/CurrentSupplyMapScene';
 
 export default () => (
     <Router>
@@ -31,6 +32,12 @@ export default () => (
                 key="viewMapScene"
                 component={ViewMapScene}
                 title="View Map Scene"
+                hideNavBar
+            />
+            <Scene
+                key="currentSupplyMapScene"
+                component={CurrentSupplyMapScene}
+                title="Current Supply Map Scene"
                 hideNavBar
             />
         </Scene>

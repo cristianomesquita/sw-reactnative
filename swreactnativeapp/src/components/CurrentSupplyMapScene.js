@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { View, Dimensions, StyleSheet, Text, Button } from 'react-native';
+import { View, Dimensions, StyleSheet, Text } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
+import Header from './Header';
 import { changeSupplyCoords } from '../actions/SupplyRegisterAction';
 
 const { width, height } = Dimensions.get('window');
@@ -22,24 +23,25 @@ class MyMapView extends Component {
         });
     }
 
-    // getSuppliesMarker() {
-    //     const arrMarkers = [];
-    //     this.props.supplies.map((element, i) => {
-    //         arrMarkers.push(
-    //             <Marker
-    //                 key={i}
-    //                 coordinate={{
-    //                     latitude: Number(element.lat),
-    //                     longitude: Number(element.long)
-    //                 }}
-    //             >
-    //             </Marker>
-    //         );
-    //     });
+    getSuppliesMarker() {
+        const arrMarkers = [];
+        this.props.supplies.map((element, i) => {
+            arrMarkers.push(
+                <Marker
+                    title={element.supplyName}
+                    key={i}
+                    coordinate={{
+                        latitude: Number(element.lat),
+                        longitude: Number(element.long)
+                    }}
+                >
+                </Marker>
+            );
+        });
 
-    //     return arrMarkers;
+        return arrMarkers;
 
-    // }
+    }
 
     calcDelta(lat, long, accuracy) {
         const oneDegreeOfLongitudeInMeters = 111.32 * 1000;
@@ -55,10 +57,14 @@ class MyMapView extends Component {
     render() {
         return (
             <View style={container}>
-                <Button
-                    title="Clique para concluir"
-                    color="#00d900"
-                    onPress={() => Actions.pop()}
+                <Header
+                    bgColor="#ecf0f1"
+                    title="SUPRIMENTOS DISPONÍVEIS"
+                    colorTitle="#00d900"
+                    fontSize={20}
+                    height={80}
+                    iconName="arrow-left"
+                    changeScene="pop"
                 />
                 {
                     this.props.lat ? <MapView
@@ -105,7 +111,7 @@ class MyMapView extends Component {
                                 </View>
                             </Callout>
                         </Marker>
-                        {/*this.getSuppliesMarker()*/}
+                        {this.getSuppliesMarker()}
                     </MapView> : null
                 }
             </View >
